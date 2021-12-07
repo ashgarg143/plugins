@@ -3,6 +3,9 @@
 // found in the LICENSE file.
 
 import 'dart:async';
+import 'dart:io';
+import 'dart:convert';
+
 
 import 'package:flutter/services.dart';
 
@@ -37,7 +40,17 @@ class MethodChannelWebViewPlatform implements WebViewPlatformController {
       case 'javascriptChannelMessage':
         final String channel = call.arguments['channel']! as String;
         final String message = call.arguments['message']! as String;
-        _javascriptChannelRegistry.onJavascriptChannelMessage(channel, message);
+        final String data = call.arguments['data']! as String;
+
+        String messageType = message;
+        String parsedData = data;
+        if (Platform.isIOS) {
+          final Map<String, String> parsedMessage = Map<String, String>.from(jsonDecode(message) as Map);
+          messageType = parsedMessage['type'] as String;
+          parsedData = (parsedMessage['data'] ?? '') as String;
+        }
+
+        _javascriptChannelRegistry.onJavascriptChannelMessage(channel, message, data);
         return true;
       case 'navigationRequest':
         return await _platformCallbacksHandler.onNavigationRequest(

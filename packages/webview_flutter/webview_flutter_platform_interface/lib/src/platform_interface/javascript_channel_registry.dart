@@ -18,14 +18,14 @@ class JavascriptChannelRegistry {
   final Map<String, JavascriptChannel> channels = <String, JavascriptChannel>{};
 
   /// Invoked when a JavaScript channel message is received.
-  void onJavascriptChannelMessage(String channel, String message) {
+  void onJavascriptChannelMessage(String channel, String message, String data) {
     final JavascriptChannel? javascriptChannel = channels[channel];
 
     if (javascriptChannel == null) {
       throw ArgumentError('No channel registered with name $channel.');
     }
 
-    javascriptChannel.onMessageReceived(JavascriptMessage(message));
+    javascriptChannel.onMessageReceived(JavascriptMessage(message, data));
   }
 
   /// Updates the set of [JavascriptChannel]s with the new set.

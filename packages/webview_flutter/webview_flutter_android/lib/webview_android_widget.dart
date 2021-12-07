@@ -410,8 +410,8 @@ class WebViewAndroidJavaScriptChannel
   final JavascriptChannelRegistry javascriptChannelRegistry;
 
   @override
-  void postMessage(String message) {
-    javascriptChannelRegistry.onJavascriptChannelMessage(channelName, message);
+  void postMessage(String message, String data) {
+    javascriptChannelRegistry.onJavascriptChannelMessage(channelName, message, data);
   }
 }
 

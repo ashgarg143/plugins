@@ -1139,7 +1139,7 @@ abstract class JavaScriptChannelFlutterApi {
       _JavaScriptChannelFlutterApiCodec();
 
   void dispose(int instanceId);
-  void postMessage(int instanceId, String message);
+  void postMessage(int instanceId, String message, String data);
   static void setup(JavaScriptChannelFlutterApi? api,
       {BinaryMessenger? binaryMessenger}) {
     {
@@ -1176,9 +1176,10 @@ abstract class JavaScriptChannelFlutterApi {
           assert(arg_instanceId != null,
               'Argument for dev.flutter.pigeon.JavaScriptChannelFlutterApi.postMessage was null, expected non-null int.');
           final String? arg_message = (args[1] as String?);
+          final String? arg_data = (args[2] as String?);
           assert(arg_message != null,
               'Argument for dev.flutter.pigeon.JavaScriptChannelFlutterApi.postMessage was null, expected non-null String.');
-          api.postMessage(arg_instanceId!, arg_message!);
+          api.postMessage(arg_instanceId!, arg_message!, arg_data!);
           return;
         });
       }

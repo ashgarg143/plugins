@@ -514,7 +514,7 @@ abstract class JavaScriptChannel {
   final String channelName;
 
   /// Callback method when javaScript calls `postMessage` on the object instance passed.
-  void postMessage(String message);
+  void postMessage(String message, String data);
 }
 
 /// Receive various notifications and requests for [WebView].

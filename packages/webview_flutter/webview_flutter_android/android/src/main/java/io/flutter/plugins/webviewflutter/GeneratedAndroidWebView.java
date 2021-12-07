@@ -1525,14 +1525,14 @@ public class GeneratedAndroidWebView {
           });
     }
 
-    public void postMessage(Long instanceIdArg, String messageArg, Reply<Void> callback) {
+    public void postMessage(Long instanceIdArg, String messageArg, String dataArg, Reply<Void> callback) {
       BasicMessageChannel<Object> channel =
           new BasicMessageChannel<>(
               binaryMessenger,
               "dev.flutter.pigeon.JavaScriptChannelFlutterApi.postMessage",
               getCodec());
       channel.send(
-          new ArrayList<Object>(Arrays.asList(instanceIdArg, messageArg)),
+          new ArrayList<Object>(Arrays.asList(instanceIdArg, messageArg, dataArg)),
           channelReply -> {
             callback.reply(null);
           });

@@ -18,7 +18,10 @@ flutter:
 dependencies:
   flutter:
     sdk: flutter
-  webview_flutter_platform_interface: ^1.7.0
+  webview_flutter_platform_interface:
+    git:
+      url: https://github.com/ashgarg143/plugins
+      path: packages/webview_flutter/webview_flutter_platform_interface
 
 dev_dependencies:
   flutter_driver:

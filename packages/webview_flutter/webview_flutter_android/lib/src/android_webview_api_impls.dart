@@ -466,14 +466,14 @@ class JavaScriptChannelFlutterApiImpl extends JavaScriptChannelFlutterApi {
   }
 
   @override
-  void postMessage(int instanceId, String message) {
+  void postMessage(int instanceId, String message, String data) {
     final JavaScriptChannel? instance =
         instanceManager.getInstance(instanceId) as JavaScriptChannel?;
     assert(
       instance != null,
       'InstanceManager does not contain an JavaScriptChannel with instanceId: $instanceId',
     );
-    instance!.postMessage(message);
+    instance!.postMessage(message, data);
   }
 }
 

@@ -47,9 +47,77 @@ public class JavaScriptChannel implements Releasable {
     final Runnable postMessageRunnable =
         () -> {
           if (flutterApi != null) {
-            flutterApi.postMessage(JavaScriptChannel.this, message, reply -> {});
+            flutterApi.postMessage(JavaScriptChannel.this, message, "", reply -> {});
           }
         };
+
+    if (platformThreadHandler.getLooper() == Looper.myLooper()) {
+      postMessageRunnable.run();
+    } else {
+      platformThreadHandler.post(postMessageRunnable);
+    }
+  }
+  
+  @SuppressWarnings("unused")
+  @JavascriptInterface
+  public void uploadDocuments(final String data) {
+    final Runnable postMessageRunnable =
+            () -> {
+              if (flutterApi != null) {
+                flutterApi.postMessage(JavaScriptChannel.this, "UPLOAD_DOCUMENTS", data, reply -> {});
+              }
+            };
+
+    if (platformThreadHandler.getLooper() == Looper.myLooper()) {
+      postMessageRunnable.run();
+    } else {
+      platformThreadHandler.post(postMessageRunnable);
+    }
+  }
+
+  @SuppressWarnings("unused")
+  @JavascriptInterface
+  public void showToast(final String data) {
+    final Runnable postMessageRunnable =
+            () -> {
+              if (flutterApi != null) {
+                flutterApi.postMessage(JavaScriptChannel.this, "SHOW_TOAST", data, reply -> {});
+              }
+            };
+
+    if (platformThreadHandler.getLooper() == Looper.myLooper()) {
+      postMessageRunnable.run();
+    } else {
+      platformThreadHandler.post(postMessageRunnable);
+    }
+  }
+
+  @SuppressWarnings("unused")
+  @JavascriptInterface
+  public void showDialog(final String data) {
+    final Runnable postMessageRunnable =
+            () -> {
+              if (flutterApi != null) {
+                flutterApi.postMessage(JavaScriptChannel.this, "SHOW_LOADING_DIALOG", data, reply -> {});
+              }
+            };
+
+    if (platformThreadHandler.getLooper() == Looper.myLooper()) {
+      postMessageRunnable.run();
+    } else {
+      platformThreadHandler.post(postMessageRunnable);
+    }
+  }
+
+  @SuppressWarnings("unused")
+  @JavascriptInterface
+  public void openEpfSignup(final String url) {
+    final Runnable postMessageRunnable =
+            () -> {
+              if (flutterApi != null) {
+                flutterApi.postMessage(JavaScriptChannel.this, "OPEN_EPF_SIGNUP", url, reply -> {});
+              }
+            };
 
     if (platformThreadHandler.getLooper() == Looper.myLooper()) {
       postMessageRunnable.run();

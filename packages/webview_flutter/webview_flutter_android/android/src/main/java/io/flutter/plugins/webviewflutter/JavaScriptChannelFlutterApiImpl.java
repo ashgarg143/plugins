@@ -29,8 +29,8 @@ public class JavaScriptChannelFlutterApiImpl extends JavaScriptChannelFlutterApi
 
   /** Passes arguments from {@link JavaScriptChannel#postMessage} to Dart. */
   public void postMessage(
-      JavaScriptChannel javaScriptChannel, String messageArg, Reply<Void> callback) {
-    super.postMessage(instanceManager.getInstanceId(javaScriptChannel), messageArg, callback);
+      JavaScriptChannel javaScriptChannel, String messageArg, String dataArg, Reply<Void> callback) {
+    super.postMessage(instanceManager.getInstanceId(javaScriptChannel), messageArg, dataArg, callback);
   }
 
   /**
