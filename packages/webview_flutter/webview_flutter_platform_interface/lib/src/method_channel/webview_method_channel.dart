@@ -50,7 +50,7 @@ class MethodChannelWebViewPlatform implements WebViewPlatformController {
           parsedData = (parsedMessage['data'] ?? '') as String;
         }
 
-        _javascriptChannelRegistry.onJavascriptChannelMessage(channel, message, data);
+        _javascriptChannelRegistry.onJavascriptChannelMessage(channel, messageType, parsedData);
         return true;
       case 'navigationRequest':
         return await _platformCallbacksHandler.onNavigationRequest(
