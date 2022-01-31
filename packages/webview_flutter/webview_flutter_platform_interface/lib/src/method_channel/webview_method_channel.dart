@@ -40,7 +40,7 @@ class MethodChannelWebViewPlatform implements WebViewPlatformController {
       case 'javascriptChannelMessage':
         final String channel = call.arguments['channel']! as String;
         final String message = call.arguments['message']! as String;
-        final String data = call.arguments['data']! as String;
+        final String data = call.arguments['data'] as String;
 
         String messageType = message;
         String parsedData = data;
