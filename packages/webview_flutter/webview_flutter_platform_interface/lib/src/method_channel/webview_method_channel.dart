@@ -48,6 +48,12 @@ class MethodChannelWebViewPlatform implements WebViewPlatformController {
           final Map<String, String> parsedMessage = Map<String, String>.from(jsonDecode(message) as Map);
           messageType = parsedMessage['type'] as String;
           parsedData = (parsedMessage['data'] ?? '') as String;
+          
+          // For EPF actions (dialog and toast)
+          // Json contains 'msg' instead of 'data'
+          if(parsedMessage['data'] == null && parsedMessage['msg'] != null) {
+            parsedData = parsedMessage['msg'] as String;
+          }
         }
 
         _javascriptChannelRegistry.onJavascriptChannelMessage(channel, messageType, parsedData);
